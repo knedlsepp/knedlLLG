@@ -1,0 +1,6 @@
+[submodule "external_codes/MILLG-K-operator-MATLAB"]
+	path = external_codes/MILLG-K-operator-MATLAB
+	url = https://github.com/knedlsepp/MILLG-K-operator-MATLAB.git
+[submodule "external_codes/p1afem-nD"]
+	path = external_codes/p1afem-nD
+	url = https://github.com/knedlsepp/p1afem-nD.git
