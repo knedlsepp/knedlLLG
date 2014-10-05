@@ -16,7 +16,11 @@ geometry = 'permalloy29483';
 coordinates = dlmread(['coordinates_', geometry, '.txt']);
 elements = dlmread(['elements_', geometry, '.txt']);
 coordinates = coordinates*1e-9;
-load([thisDir,'/../results/m_standard_problem_4_s_state_final.mat'],'mh0');
+try
+    load([thisDir,'/../results/m_standard_problem_4_s_state_final.mat'],'mh0');
+catch
+    disp('Please precompute the initial s-state first.');
+end
 %%
 switch lower(variant)
     case 'recompute'

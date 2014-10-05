@@ -47,16 +47,12 @@ ExampleData = struct(...
     'tauEnd', tauEnd, ...
     'steps', 5000);
 %%
-
-% timeStepping(ExampleData, @midpoint_newton, ...
-%              plotAndSavePostprocessor(mesh, [thisDir,'/../results'], name))
 timeStepping(ExampleData, @midpoint_newton, ...
              plotAndSavePostprocessor(mesh, [thisDir,'/../results'], name));
-load([thisDir,'/../results/m_standard_problem_4_s_state_',num2str(ExampleData.steps)],'mhj');
-mh0 = mhj;
+%% Now simulate for another nanosecond with external field turned off.
+load([thisDir,'/../results/m_standard_problem_4_s_state_ext_',num2str(ExampleData.steps)],'mhj');
+ExampleData.mh0 = mhj;
+ExampleData.fht = (@(t) 0);
+ExampleData.steps = 1000;
 save([thisDir,'/../results/m_standard_problem_4_s_state_final'],'mh0');
 % TODO: Dimensionen wieder hinzufuegen! M = Ms*m
-
-
-         
-         
