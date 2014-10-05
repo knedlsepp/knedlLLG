@@ -7,7 +7,7 @@ function saveMagnetization(mesh,path,name,mhj,j,variant) %#ok<*INUSL>
 %   ENERGYPLOTPOSTPROCESSOR
 %
 %   Author: Josef Kemetmueller - 16.12.2013
-VTKQUIVERURL = "http://www.mathworks.com/matlabcentral/fileexchange/33656-vtkpipe";
+VTKQUIVERURL = 'http://www.mathworks.com/matlabcentral/fileexchange/33656-vtkpipe';
 filename = sprintf('%s/m_%s_%d',path,name,j);
 switch variant
     case 'txt'
