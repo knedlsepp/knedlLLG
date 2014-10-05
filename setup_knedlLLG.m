@@ -1,6 +1,6 @@
 % THIS SCRIPT COMPILES THE BISECTION-SOURCE
-[pathstrmain, name, ext] = fileparts(mfilename('fullpath'));
-addpath(genpath(pathstrmain),'-begin');
+[knedlpathstrmain, name, ext] = fileparts(mfilename('fullpath'));
+addpath(genpath(knedlpathstrmain),'-begin');
 setup_p1afem_nD;
 compileKOperator;
-cd(pathstrmain);
+cd(knedlpathstrmain);
