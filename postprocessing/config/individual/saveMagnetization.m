@@ -14,18 +14,19 @@ switch variant
         dlmwrite([filename,'.txt'], mhj);
     case 'mat'
         save(filename,'mhj');
+    case 'vtu'
+        try
+            coo = 1e9*mesh.coordinates; % Rescale from nanometers to meters
+            fileout = [filename, '.vtu'];
+            vtkquiver(coo(:,1), coo(:,2), coo(:,3), ...
+                      mhj(:,1), mhj(:,2), mhj(:,3), 'magnetization', fileout);
+            %%
+            bdN = mesh.bd.nodesOf3DMesh;
+            fileout = [filename, '_bd.vtu'];
+            vtkquiver(coo(bdN,1), coo(bdN,2), coo(bdN,3), mhj(bdN,1), mhj(bdN,2), mhj(bdN,3), 'magnetization', fileout);
+        catch
+            disp(['To save the magnetization as vtu-file, download vtkquiver from here: ',VTKQUIVERURL]);
+        end
     otherwise
         error('Unknown option %s', variant);
-end
-try
-	coo = 1e9*mesh.coordinates; % Rescale from nanometers
-	fileout = [filename, '.vtu'];
-	vtkquiver(coo(:,1), coo(:,2), coo(:,3), ...
-	          mhj(:,1), mhj(:,2), mhj(:,3), 'magnetization', fileout);
-	%%
-	bdN = mesh.bd.nodesOf3DMesh;
-	fileout = [filename, '_bd.vtu'];
-	vtkquiver(coo(bdN,1), coo(bdN,2), coo(bdN,3), mhj(bdN,1), mhj(bdN,2), mhj(bdN,3), 'magnetization', fileout);
-catch
-	disp(['To save the magnetization as vtu-file, download vtkquiver from here: ',VTKQUIVERURL]);
 end
