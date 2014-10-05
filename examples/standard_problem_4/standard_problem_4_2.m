@@ -1,5 +1,5 @@
 name = 'standard_problem_4_2';
-variant = 'recompute';
+variant = 'load';
 %% PERMALLOY
 material = struct(...
     'A',  1.3e-11,...	% J/m
@@ -19,7 +19,7 @@ coordinates = coordinates*1e-9;
 try
     load([thisDir,'/../results/m_standard_problem_4_s_state_final.mat'],'mh0');
 catch
-    disp('Please precompute the initial s-state first.');
+    error('Please precompute the initial s-state first.');
 end
 %%
 switch lower(variant)
@@ -27,7 +27,8 @@ switch lower(variant)
         mesh = precomputeMeshValues(coordinates,elements,material);
         save(precomputeFile, 'mesh');
     case 'load'
-        load(precomputeFile, 'mesh');
+        load([thisDir,'/standard_problem_4_s_state_mesh.mat'])
+        %load(precomputeFile, 'mesh');
 end
 %%
 
